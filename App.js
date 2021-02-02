@@ -17,7 +17,7 @@ export default class App extends React.Component {
 
         <View style={styles.ddayView}>
             <Text style={styles.titleText}>
-                개강까지
+                방학까지
             </Text>
 
             <Text style={styles.ddayText}>
