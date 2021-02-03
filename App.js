@@ -1,8 +1,5 @@
-//App.js
 import React from 'react';
-import { StyleSheet, Text, View, Image, TextInput,TouchableOpacity, ScrollView, ImageBackground} from 'react-native';
-import Setting from './Setting.js';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, ScrollView, ImageBackground } from 'react-native';
 
 export default class App extends React.Component {
   
@@ -11,91 +8,9 @@ export default class App extends React.Component {
 
         this.state={
             dday: new Date(),
-            ddayTitle: '',
+            ddayTitle: '개강',
             catLog:[],
-            settingModal: false,
         }
-    }
-
-    async UNSAFE_componentWillMount(){
-        try{
-            const ddayString = await AsyncStorage.getItem('@dday')
-
-            if(ddayString ==null){
-                this.setState({
-                    dday: new Date(),
-                    ddayTitle: '',
-                });
-            }
-
-            else{
-                const dday=JSON.parse(ddayString);
-
-                this.setState({
-                    dday:new Date(dday.date),
-                    ddayTitle: dday.title,
-                });
-            }
-        }
-
-        catch(e){
-            console.log("ERR");
-        }
-    }
-
-    toggleSettingModal(){
-        this.setState({
-            settingModal: !this.state.settingModal
-        })
-    }
-
-    settingHandler(title, date){
-        this.setState({
-            ddayTitle: title;
-            dday: date,
-        });
-
-        this.toggleSettingModal();
-    }
-
-    makeDataString(){
-        return this.state.dday.getFullYear()+'년'+(this.state.dday.getMonth()+1)+'월'+this.state.dday.getDate()+'일';
-    }
-
-     makeRemainString() {
-        const distance = new Date().getTime() - this.state.dday.getTime();
-        console.log(new Date(), this.state.dday,distance / (1000 * 60 * 60 * 24) )
-        const remain = Math.floor(distance / (1000 * 60 * 60 * 24));
-        if(remain < 0) {
-          return 'D'+remain;
-        } else if (remain > 0) {
-          return 'D+'+remain;
-        } else if (remain === 0) {
-          return 'D-day';
-        }
-      }
-
-    async settingHandler(title, date){
-        this.setState({
-            ddayTitle: title,
-            dday: date,
-        });
-
-        try{
-            const dday={
-                title: title,
-                date: date,
-            }
-
-            const ddayString = JSON.stringify(dday);
-            await AsyncStorage.setItem('@dday',ddayString);
-        }
-
-        catch(e){
-            console.log(e);
-        }
-
-        this.toggleSettingModal();
     }
 
     render() {
@@ -106,7 +21,7 @@ export default class App extends React.Component {
             source={require('./image/background.png')}>
 
         <View style={styles.settingView}>
-            <TouchableOpacity onPress={()=>this.toggleSettingModal()}>
+            <TouchableOpacity>
                 <Image source={require('./icon/setting.png')}/>
             </TouchableOpacity>
         </View>
@@ -117,11 +32,11 @@ export default class App extends React.Component {
             </Text>
 
             <Text style={styles.ddayText}>
-                {this.makeRemainString()}
+                D-27
             </Text>
 
             <Text style={styles.dateText}>
-                {this.makeDataString()}
+                2021.02.03
             </Text>
 
         </View>
@@ -140,11 +55,6 @@ export default class App extends React.Component {
                 </TouchableOpacity>
             </View>
         </View>
-            {this.state.settingModal ?
-                <Setting
-                    modalHandler={()=>this.toggleSettingModal()}
-                    settingHandler={(title, date)=>this.settingHandler(title, date)}/>
-                : <></>}
       </ImageBackground>
       </View>
     );
