@@ -21,7 +21,7 @@ export default class App extends React.Component {
             </Text>
 
             <Text style={styles.ddayText}>
-                D-27
+                D-27ㅠㅠ
             </Text>
 
             <Text style={styles.dateText}>
