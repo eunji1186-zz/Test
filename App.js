@@ -17,15 +17,15 @@ export default class App extends React.Component {
 
         <View style={styles.ddayView}>
             <Text style={styles.titleText}>
-                방학까지
+                개강까지
             </Text>
 
             <Text style={styles.ddayText}>
-                D-22
+                D-27
             </Text>
 
             <Text style={styles.dateText}>
-                2021.01.29
+                2021.02.03
             </Text>
 
         </View>
