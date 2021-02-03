@@ -21,7 +21,7 @@ export default class App extends React.Component {
             </Text>
 
             <Text style={styles.ddayText}>
-                D-27ㅠㅠ
+                D-27
             </Text>
 
             <Text style={styles.dateText}>
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     },
 
     ddayText:{
-        fontSize: 100,
+        fontSize: 90,
         fontWeight: 'bold',
         color: '#4A4A4A',
     },
